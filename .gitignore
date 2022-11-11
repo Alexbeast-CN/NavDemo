@@ -1,0 +1,9 @@
+*.json
+*.vs
+build/
+_build/
+version_info.h
+*.vscode
+.vscode/
+cmake-build*/
+.idea/
