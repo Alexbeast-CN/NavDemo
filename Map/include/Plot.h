@@ -34,6 +34,10 @@ using namespace colors;
 
 
 class Plot {
+private:
+    Map     map_;
+    cv::Mat img_;
+
 public:
     Plot(Map& map)
     : map_(map)
@@ -46,7 +50,7 @@ public:
                 else if (map.getValue(i, j) == int(START))
                     img_.at<cv::Vec3b>(i, j) = ROYALBLUE;
                 else if (map.getValue(i, j) == int(GOAL))
-                    img_.at<cv::Vec3b>(i, j) = YELLOW;
+                    img_.at<cv::Vec3b>(i, j) = RED;
                 else
                     img_.at<cv::Vec3b>(i, j) = LIGHTGREY;
             }
@@ -55,9 +59,10 @@ public:
 
     void display_static_map();
     virtual ~Plot()= default;
+
+
 private:
-    Map     map_;
-    cv::Mat img_;
+    void padding(int padding_size);
 
 };
 

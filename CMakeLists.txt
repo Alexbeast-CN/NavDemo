@@ -27,20 +27,13 @@ endif ()
 
 message("Build Type:" ${CMAKE_BUILD_TYPE} ${CMAKE_CXX_FLAGS})
 
-# ----------------------------------------------------------------------------
-# Find dependencies. 
-# ----------------------------------------------------------------------------
 find_package(OpenCV 4 REQUIRED)
-include_directories(${OpenCV_INCLUDE_DIRS})
-
-if(OPENCV_FOUND)
-    message("-- OpenCV 4 found, VERSION: " ${OpenCV_VERSION})
-else()
-    message("-- OpenCV not found")
-endif()
-
 find_package(Eigen3 REQUIRED)
+
+include_directories(${OpenCV_INCLUDE_DIRS})
 include_directories(${EIGEN3_INCLUDE_DIR})
+include_directories(Search_based_method/*)
+
 
 if(Eigen3_FOUND)
     message("-- Eigen3 found, VERSION: " ${EIGEN3_VERSION_STRING})
@@ -48,7 +41,19 @@ else()
     message("-- Eigen3 not found")
 endif()
 
+if(OPENCV_FOUND)
+    message("-- OpenCV 4 found, VERSION: " ${OpenCV_VERSION})
+else()
+    message("-- OpenCV not found")
+endif()
+
 add_subdirectory(Map)
+
+file (GLOB_RECURSE SEARCH Search_based_method/*.cpp)
+
+
+
+add_executable(NavDemo main.cpp ${SEARCH})
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

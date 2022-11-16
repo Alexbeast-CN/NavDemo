@@ -60,6 +60,22 @@ bool Map::is_line_valid(int x1, int y1, int x2, int y2) {
     return true;
 }
 
+void Map::random_map(int num_obs) {
+    if (num_obs > row_ * col_){
+        std::cout << "Too many obstacles!" << std::endl;
+        return;
+    }
+    int count = 0;
+    while (count < num_obs){
+        int x = rand() % row_;
+        int y = rand() % col_;
+        if (map_(x, y) == int(FREE)){
+            map_(x, y) = int(OBSTACLE);
+            ++count;
+        }
+    }
+}
+
 
 
 

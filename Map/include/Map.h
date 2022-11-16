@@ -59,6 +59,9 @@ public:
         map_(goal_.x, goal_.y)   = int(GOAL);
     };
 
+    // Generate a random map.
+    void random_map(int num_obs);
+
     virtual         ~Map(){};
     inline int      getRow() const { return row_; }
     inline int      getCol() const { return col_; }

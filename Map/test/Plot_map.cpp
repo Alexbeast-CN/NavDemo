@@ -6,7 +6,8 @@
 #include "Plot.h"
 
 int main(){
-    Map map(100, 100);
+    Map map(40, 50);
+    map.random_map(20*30);
     Plot plot(map);
     plot.display_static_map();
     return 0;
